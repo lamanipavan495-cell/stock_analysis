@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Chivo:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(180deg,#030316 0%, #071025 100%);
+  color: #e6eef6;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:root{
+  --panel-bg: #0b0f12;
+  --muted: #94a3b8;
+  --accent-red: #ef4444;
+  --accent-green: #22c55e;
+}
+
+.glass-card{
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.04);
+  backdrop-filter: blur(6px);
+}
+
+/* Terminal fonts and utility classes (some overlap with Tailwind) */
+
+.font-mono { font-family: 'JetBrains Mono', monospace; }
+.font-display { font-family: 'Chivo', sans-serif; letter-spacing: -0.02em; }
+
+/* Ticker marquee */
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee-track { display: inline-flex; animation: marquee 60s linear infinite; white-space: nowrap; }
+
+/* Pulsing dot */
+.pulse-dot { position: relative; display: inline-block; width: 8px; height: 8px; border-radius: 999px; background: var(--accent-green); box-shadow: 0 0 12px rgba(0, 230, 118, 0.6); }
+.pulse-dot::before { content: ''; position: absolute; inset: -4px; border-radius: 999px; border: 1px solid var(--accent-green); animation: ping 1.6s cubic-bezier(0,0,0.2,1) infinite; }
+.pulse-dot.closed { background: var(--accent-red); box-shadow: 0 0 12px rgba(255, 59, 48, 0.6); }
+.pulse-dot.closed::before { border-color: var(--accent-red); }
+@keyframes ping { 75%, 100% { transform: scale(2.2); opacity: 0; } }
+
+/* Terminal grid + scanlines */
+.terminal-grid { background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 48px 48px; }
+.scanlines::after { content: ''; position: fixed; inset: 0; background: repeating-linear-gradient(to bottom, rgba(255,255,255,0) 0px, rgba(255,255,255,0) 2px, rgba(255,255,255,0.008) 3px); pointer-events: none; z-index: 100; }
+
+/* Rise animation */
+@keyframes riseIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.rise { animation: riseIn 0.45s ease-out both; }
+

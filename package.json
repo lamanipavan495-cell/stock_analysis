@@ -1,0 +1,17 @@
+{
+  "name": "stock-dashboard",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "predev": "npx kill-port 8000 6969 6970 6971 6972",
+    "dev": "npx concurrently -k \"npm:backend\" \"npm:frontend\"",
+    "start": "npm run dev",
+    "backend": "cd backend && ..\\.venv\\Scripts\\python.exe -m uvicorn app.main:app --host 127.0.0.1 --port 8000",
+    "frontend": "cd frontend && npm run dev -- --port 6969",
+    "build": "cd frontend && npm run build"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0",
+    "kill-port": "^2.0.1"
+  }
+}

@@ -1,0 +1,1 @@
+from app.repositories.index_history_repository import IndexHistoryRepository

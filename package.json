@@ -8,8 +8,10 @@
     "start": "npm run dev",
     "backend": "cd backend && ..\\.venv\\Scripts\\python.exe -m uvicorn app.main:app --host 127.0.0.1 --port 8000",
     "frontend": "cd frontend && npm run dev -- --port 6969",
-    "build": "cd frontend && npm run build"
+    "build": "cd frontend && npm ci && npm run build"
   },
+  "postinstall": "cd frontend && npm ci",
+
   "devDependencies": {
     "concurrently": "^8.2.0",
     "kill-port": "^2.0.1"
